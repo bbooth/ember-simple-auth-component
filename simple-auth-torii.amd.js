@@ -14,13 +14,14 @@ define("simple-auth-torii/authenticators/torii",
     "use strict";
     var Base = __dependency1__["default"];
 
+    
     /**
       Authenticator that wraps the
       [Torii library](https://github.com/Vestorly/torii).
-
+    
       _The factory for this authenticator is registered as
       `'simple-auth-authenticator:torii'` in Ember's container._
-
+    
       @class Torii
       @namespace SimpleAuth.Authenticators
       @module simple-auth-torii/authenticators/torii
@@ -32,16 +33,16 @@ define("simple-auth-torii/authenticators/torii",
         @private
       */
       torii: null,
-
+    
       /**
         @property provider
         @private
       */
       provider: null,
-
+    
       /**
         Restores the session by calling the torii provider's `fetch` method.
-
+    
         @method restore
         @param {Object} data The data to restore the session from
         @return {Ember.RSVP.Promise} A promise that when it resolves results in the session being authenticated
@@ -64,12 +65,12 @@ define("simple-auth-torii/authenticators/torii",
           }
         });
       },
-
+    
       /**
         Authenticates the session by opening the torii provider. For more
         documentation on torii, see the
         [project's README](https://github.com/Vestorly/torii#readme).
-
+    
         @method authenticate
         @param {String} provider The provider to authenticate the session with
         @param {Object} options The options to pass to the torii provider
@@ -83,10 +84,10 @@ define("simple-auth-torii/authenticators/torii",
           }, reject);
         });
       },
-
+    
       /**
         Closes the torii provider.
-
+    
         @method invalidate
         @param {Object} data The data that's stored in the session
         @return {Ember.RSVP.Promise} A promise that resolves when the provider successfully closes and rejects otherwise
@@ -100,7 +101,7 @@ define("simple-auth-torii/authenticators/torii",
           }, reject);
         });
       },
-
+    
       /**
         @method resolveWith
         @private
@@ -110,7 +111,7 @@ define("simple-auth-torii/authenticators/torii",
         this.provider = data.provider;
         resolve(data);
       }
-
+    
     });
   });
 define("simple-auth-torii/ember", 
@@ -119,6 +120,7 @@ define("simple-auth-torii/ember",
     "use strict";
     var initializer = __dependency1__["default"];
 
+    
     Ember.onLoad('Ember.Application', function(Application) {
       Application.initializer(initializer);
     });
@@ -129,6 +131,7 @@ define("simple-auth-torii/initializer",
     "use strict";
     var Authenticator = __dependency1__["default"];
 
+    
     __exports__["default"] = {
       name:   'simple-auth-torii',
       before: 'simple-auth',

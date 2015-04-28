@@ -62,15 +62,16 @@ define("simple-auth-testing/authenticators/test",
     "use strict";
     var Base = __dependency1__["default"];
 
+    
     __exports__["default"] = Base.extend({
       restore: function(data) {
         return Ember.RSVP.resolve();
       },
-
+    
       authenticate: function(options) {
         return Ember.RSVP.resolve();
       },
-
+    
       invalidate: function(data) {
         return Ember.RSVP.resolve();
       }
@@ -82,6 +83,7 @@ define("simple-auth-testing/ember",
     "use strict";
     var initializer = __dependency1__["default"];
 
+    
     Ember.onLoad('Ember.Application', function(Application) {
       Application.initializer(initializer);
     });
@@ -92,6 +94,7 @@ define("simple-auth-testing/initializer",
     "use strict";
     var TestAuthenticator = __dependency1__["default"];
 
+    
     __exports__["default"] = {
       name:       'simple-auth-testing',
       before:     'simple-auth',
@@ -106,18 +109,19 @@ define("simple-auth-testing/test-helpers",
     "use strict";
     var Configuration = __dependency1__["default"];
 
+    
     __exports__["default"] = function() {
       Ember.Test.registerAsyncHelper('authenticateSession', function(app) {
         var session = app.__container__.lookup(Configuration.session);
         session.authenticate('simple-auth-authenticator:test');
         return wait();
       });
-
+    
       Ember.Test.registerHelper('currentSession', function(app) {
         var session = app.__container__.lookup(Configuration.session);
         return session;
       });
-
+    
       Ember.Test.registerAsyncHelper('invalidateSession', function(app) {
         var session = app.__container__.lookup(Configuration.session);
         if (session.get('isAuthenticated')) {
