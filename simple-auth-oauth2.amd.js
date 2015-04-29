@@ -256,7 +256,7 @@ define("simple-auth-oauth2/authenticators/oauth2",
         var options = {url: url, type: 'POST', data: data, dataType: 'json', contentType: 'application/x-www-form-urlencoded'};
     
         if(!Ember.isEmpty(_this.clientId)) {
-          var base64ClientId = atob(_this.clientId + ":");
+          var base64ClientId = btoa(_this.clientId + ":");
           Ember.merge(options, {headers: {Authorization: "Basic " + base64ClientId}});
         }
     
