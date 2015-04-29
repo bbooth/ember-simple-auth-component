@@ -252,13 +252,15 @@ define("simple-auth-oauth2/authenticators/oauth2",
         @protected
       */
       makeRequest: function(url, data) {
-        return Ember.$.ajax({
-          url:         url,
-          type:        'POST',
-          data:        data,
-          dataType:    'json',
-          contentType: 'application/x-www-form-urlencoded'
-        });
+        var _this = this;
+        var options = {url: url, type: 'POST', data: data, dataType: 'json', contentType: 'application/x-www-form-urlencoded'};
+    
+        if(!Ember.isEmpty(_this.clientId)) {
+          var base64ClientId = atob(_this.clientId + ":");
+          Ember.merge(options, {headers: {Authorization: "Basic " + base64ClientId}});
+        }
+    
+        return Ember.$.ajax(options);
       },
     
       /**
